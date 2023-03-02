@@ -76,6 +76,8 @@ const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find();
 
   for (const user of users) {
+    user.username = "";
+    user.password = "";
     user.joined = user.createdAt.toString().slice(0, 15);
     if (user.image != "image") {
       const params = {

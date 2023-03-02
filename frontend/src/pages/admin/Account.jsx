@@ -84,7 +84,10 @@ export default function Account() {
     const formData = new FormData();
 
     formData.append("nickname", values.nickname);
-    formData.append("image", values.image);
+    formData.append(
+      "image",
+      values.image.length === 0 ? userData.image : values.image
+    );
     formData.append("id", userData.id);
     formData.append("type", "update details");
 

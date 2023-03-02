@@ -35,6 +35,38 @@ export default function Layout() {
         <CssBaseline />
         <Navbar />
         <Outlet />
+        <Box
+          className="footer"
+          sx={{
+            "& > footer": {
+              textAlign: "center",
+            },
+          }}
+        >
+          <Box mr="auto">
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/124/124010.png"
+                className="social-btn"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
+                className="social-btn"
+              />
+            </a>
+          </Box>
+          <footer>Copyright &copy; Deva, All Rights Reserved</footer>
+        </Box>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

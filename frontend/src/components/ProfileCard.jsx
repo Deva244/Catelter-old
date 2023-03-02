@@ -43,6 +43,7 @@ export default function ProfileCard({
 
   return (
     <Card
+      display="none"
       key={id}
       sx={{
         minWidth: 200,
@@ -57,7 +58,9 @@ export default function ProfileCard({
           image={imageUrl ? imageUrl : "/person.png"}
           title={name}
           onClick={() => {
-            state ? navigate(`/pets/${name}`) : undefined;
+            state === "Available" || state === "Unavailable"
+              ? navigate(`/pets/${name}`)
+              : undefined;
           }}
           sx={{ cursor: "pointer" }}
         />
@@ -85,12 +88,16 @@ export default function ProfileCard({
         </Typography>
         <Typography>{age}</Typography>
         <Typography>{breed}</Typography>
-        <Typography sx={{ mt: "5px" }}>{about}</Typography>
+        <Typography sx={{ mt: "10px" }}>{about}</Typography>
       </CardContent>
       <CardActions>
-        {state === "Free to adopt" && (
+        {(state === "Available" || state === "Lost") && (
           <Button
-            onClick={() => navigate("/form")}
+            onClick={() =>
+              state === "Available"
+                ? navigate("/form")
+                : document.getElementById("contact").scrollIntoView()
+            }
             sx={{
               bgcolor: colors.blueAccent[500],
               fontSize: "13px",
@@ -103,7 +110,7 @@ export default function ProfileCard({
               },
             }}
           >
-            Adopt
+            {state === "Available" ? "Adopt" : "Contact"}
           </Button>
         )}
       </CardActions>

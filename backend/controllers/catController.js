@@ -77,6 +77,7 @@ const addCat = asyncHandler(async (req, res) => {
       neutered: req.body.neutered,
       about: req.body.about,
       state: req.body.state,
+      lastSeen: req.body.state === "Lost" ? req.body.lastSeen : null,
     });
 
     res.status(200).json(`Successfully added ${cat.name}`);

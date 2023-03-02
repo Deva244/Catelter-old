@@ -123,12 +123,6 @@ export default function Team() {
     },
   };
 
-  const userColumn = {
-    field: "username",
-    headerName: "Username",
-    cellClassName: "name-column--cell",
-  };
-
   // Table columns
   const columns = [
     {
@@ -197,7 +191,6 @@ export default function Team() {
   ];
 
   if (userData.access === "Admin") {
-    columns.push(userColumn);
     columns.push(actionColumn);
   }
 

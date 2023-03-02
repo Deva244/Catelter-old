@@ -1,7 +1,9 @@
+import { Box } from "@mui/material";
+
 export default function Donate() {
   return (
-    <div className="donate-page">
+    <Box m="10vh 0" height="100%">
       <h1>DONATE NOW!!!</h1>
-    </div>
+    </Box>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
@@ -24,6 +24,8 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const Desktop = useMediaQuery("(min-width:1024px)");
+  const smallDesktop = useMediaQuery("(max-width: 1600px)");
+  const smallerDesktop = useMediaQuery("(max-width: 1280px)");
 
   const [checked, setChecked] = useState(true);
 
@@ -48,6 +50,9 @@ export default function Home() {
   }
 
   const cardGrow = catsData.map((cat) => {
+    if (cat.state === "Lost" || cat.state === "Found") {
+      return null;
+    }
     return (
       <Grow
         key={cat._id}
@@ -56,14 +61,16 @@ export default function Home() {
         {...(checked ? { timeout: 2000 } : {})}
       >
         <Box
-          gridColumn="span 1"
+          gridColumn="span 2"
           sx={{
             "& > img": {
               borderRadius: "4px",
+              boxShadow:
+                "0px 11px 15px 7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.2),0px 9px 46px 8px rgba(0,0,0,0.2)",
             },
           }}
         >
-          <img src={cat.imageUrl} width="200px" />
+          <img src={cat.imageUrl} width={Desktop ? "200px" : "100px"} />
         </Box>
       </Grow>
     );
@@ -83,15 +90,57 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <Box>a</Box>
         <Box
+          width={Desktop ? "70%" : "85%"}
+          bgcolor="rgb( 70, 72, 84, 0.7 )"
+          p="2rem 1.5rem"
           sx={{
-            display: Desktop ? "grid" : "none",
-            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-            gap: "15px",
+            mt: Desktop ? "12rem" : "2rem",
+            display: "flex",
+            justifyContent: Desktop ? "space-between" : "center",
+            alignItems: "center",
+            flexDirection: smallerDesktop ? "column" : undefined,
           }}
         >
-          {cardGrow}
+          <Box>
+            <Typography
+              variant={Desktop ? "h1" : "h2"}
+              sx={{
+                color: "#70d8bd",
+                fontWeight: "bold",
+                textAlign: Desktop ? "left" : "center",
+              }}
+            >
+              Find your new best friend
+            </Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                color: "#b7ebde",
+                textAlign: Desktop ? "none" : "center",
+                mt: Desktop ? "0" : "10px",
+                "& > a": {
+                  textDecoration: "none",
+                  color: "#868dfb",
+                },
+              }}
+            >
+              <Link to="/form">Adopt</Link> a cat today
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(6, minmax(0, 1fr))",
+              gap: "15px",
+              mt: smallerDesktop ? "1rem" : undefined,
+              "& > div": {
+                gridColumn: smallDesktop ? "span 3" : undefined,
+              },
+            }}
+          >
+            {cardGrow}
+          </Box>
         </Box>
       </Box>
       {/* DONATE */}
@@ -141,6 +190,7 @@ export default function Home() {
       </Box>
       {/* CONTACT */}
       <Box
+        id="contact"
         display="flex"
         justifyContent="space-around"
         alignItems="center"
@@ -157,6 +207,7 @@ export default function Home() {
         <Pets
           title="Lost & Found"
           subtitle="Help reunite these pets with their owners"
+          page="lost"
         />
       </Box>
       {/* TEAM */}
@@ -167,10 +218,6 @@ export default function Home() {
         bgcolor={colors.primary[400]}
       >
         <TeamMembers title="Meet The Team" subtitle="Our team members" />
-      </Box>
-      {/* FOOTER */}
-      <Box className="footer">
-        <footer>Footer</footer>
       </Box>
     </Box>
   );

@@ -27,7 +27,7 @@ export default function AdminLogin() {
     }
     if (isSuccess || user) {
       dispatch(getUserData());
-      navigate("/admin");
+      navigate("/cadmin");
     }
 
     dispatch(reset());

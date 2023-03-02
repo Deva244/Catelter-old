@@ -163,7 +163,7 @@ const Sidebar = ({ unread, unviewed, display }) => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
-              to="/admin"
+              to="/cadmin"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -180,14 +180,14 @@ const Sidebar = ({ unread, unviewed, display }) => {
             </Typography>
             <Item
               title="Team"
-              to="/admin/team"
+              to="/cadmin/team"
               icon={<GroupsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pets"
-              to="/admin/pets"
+              to="/cadmin/pets"
               icon={<PetsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -204,7 +204,7 @@ const Sidebar = ({ unread, unviewed, display }) => {
             </Typography>
             <Item
               title="Messages"
-              to="/admin/messages"
+              to="/cadmin/messages"
               icon={
                 <Badge
                   badgeContent={unread}
@@ -223,7 +223,7 @@ const Sidebar = ({ unread, unviewed, display }) => {
             />
             <Item
               title="Forms"
-              to="/admin/forms"
+              to="/cadmin/forms"
               icon={
                 <Badge
                   badgeContent={unviewed}
@@ -242,7 +242,7 @@ const Sidebar = ({ unread, unviewed, display }) => {
             />
             <Item
               title="Donations"
-              to="/admin/donations"
+              to="/cadmin/donations"
               icon={<AttachMoneyOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -259,7 +259,7 @@ const Sidebar = ({ unread, unviewed, display }) => {
                 ></Typography>
                 <Item
                   title="Updates"
-                  to="/admin/updates"
+                  to="/cadmin/updates"
                   icon={<CampaignOutlinedIcon />}
                   selected={selected}
                   setSelected={setSelected}

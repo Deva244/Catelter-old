@@ -8,7 +8,7 @@ import { tokens } from "../theme";
 import { useNavigate } from "react-router-dom";
 import ProfileCard from "../components/ProfileCard";
 
-export default function Pets({ title, subtitle }) {
+export default function Pets({ title, subtitle, page }) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -35,19 +35,39 @@ export default function Pets({ title, subtitle }) {
   }, [cats, isError]);
 
   const catCard = catsData.map((cat) => {
-    return (
-      <ProfileCard
-        key={cat._id}
-        id={cat._id}
-        name={cat.name}
-        age={cat.age}
-        imageUrl={cat.imageUrl}
-        breed={cat.breed}
-        state={cat.state}
-        gender={cat.gender}
-        about={cat.about}
-      />
-    );
+    if (page === "lost") {
+      if (cat.state === "Lost" || cat.state === "Found") {
+        return (
+          <ProfileCard
+            key={cat._id}
+            id={cat._id}
+            name={cat.name}
+            age={cat.age}
+            imageUrl={cat.imageUrl}
+            breed={cat.breed}
+            state={cat.state}
+            gender={cat.gender}
+            about={cat.lastSeen}
+          />
+        );
+      }
+    } else {
+      if (cat.state === "Available" || cat.state === "Unavailable") {
+        return (
+          <ProfileCard
+            key={cat._id}
+            id={cat._id}
+            name={cat.name}
+            age={cat.age}
+            imageUrl={cat.imageUrl}
+            breed={cat.breed}
+            state={cat.state}
+            gender={cat.gender}
+            about={cat.about}
+          />
+        );
+      }
+    }
   });
 
   return (
@@ -55,7 +75,7 @@ export default function Pets({ title, subtitle }) {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      m={Desktop ? "5vh 15vw" : "3vh 6vw"}
+      m={Desktop ? "10vh 15vw" : "10vh 6vw"}
     >
       <Typography variant="h1" sx={{ mb: "5px", textAlign: "center" }}>
         {title ? title : "Cats"}

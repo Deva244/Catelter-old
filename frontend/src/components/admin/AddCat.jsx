@@ -211,8 +211,9 @@ export default function AddCat({ submit, open, onClose }) {
                     helperText={touched.state && errors.state}
                     sx={{ gridColumn: "span 2" }}
                   >
-                    <MenuItem value="Free to adopt">Free to adopt</MenuItem>
-                    <MenuItem value="Prep phase">Prep phase</MenuItem>
+                    <MenuItem value="Available">Available</MenuItem>
+                    <MenuItem value="Unavailable">Unavailable</MenuItem>
+                    <MenuItem value="Lost">Lost</MenuItem>
                   </TextField>
                   <TextField
                     focused

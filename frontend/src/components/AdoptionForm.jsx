@@ -24,7 +24,7 @@ export default function AdoptionForm() {
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
 
-  const isNonMobile = useMediaQuery("(min-width: 700px)");
+  const isNonMobile = useMediaQuery("(min-width: 750px)");
 
   const { cats } = useSelector((store) => store.cat);
 
@@ -120,10 +120,10 @@ export default function AdoptionForm() {
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
-      m="5vh 0"
+      m="10vh 0"
     >
       <Typography variant="h2" sx={{ mb: 1 }}>
-        Contact Us
+        Adoption Form
       </Typography>
       <Formik
         onSubmit={handleFormSubmit}

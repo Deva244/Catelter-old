@@ -42,6 +42,9 @@ const catSchema = mongoose.Schema(
     imageUrl: {
       type: String,
     },
+    lastSeen: {
+      type: String,
+    },
   },
   {
     timestamps: true,

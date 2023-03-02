@@ -36,7 +36,7 @@ export default function App() {
             <Route path="login" element={<AdminLogin />} />
             <Route path="*" element={<NoPage />} />
           </Route>
-          <Route path="/admin" element={<Admin />}>
+          <Route path="/cadmin" element={<Admin />}>
             <Route index element={<Dashboard />} />
             <Route path="team" element={<Team />} />
             <Route path="pets" element={<ManagePets />} />

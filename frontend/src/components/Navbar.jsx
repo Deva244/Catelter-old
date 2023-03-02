@@ -28,11 +28,21 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  const [scroll, setScroll] = useState(false);
+
+  window.onscroll = (e) => {
+    if (window.scrollY != 0) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+
   const paths = ["/", "/pets", "/about", "/contact"];
 
   const currentPath = paths.indexOf(pathname);
 
-  const Desktop = useMediaQuery("(min-width: 700px)");
+  const Desktop = useMediaQuery("(min-width: 760px)");
 
   const [value, setValue] = useState(0);
 
@@ -69,63 +79,17 @@ export default function Navbar() {
   return (
     <Box>
       <Box
-        sx={{
-          bgcolor: "black",
-          padding: "5px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Button
-          onClick={() => navigate("/admin")}
-          sx={{
-            bgcolor: "purple",
-            fontSize: "12px",
-            fontWeight: "bold",
-            color: "white",
-            minWidth: "0",
-            ":hover": {
-              bgcolor: colors.blueAccent[400],
-              color: "black",
-            },
-            ":focus": {
-              outline: "none",
-            },
-          }}
-        >
-          Admin
-        </Button>
-        <Box>
-          <a
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/124/124010.png"
-              className="social-btn"
-            />
-          </a>
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
-              className="social-btn"
-            />
-          </a>
-        </Box>
-      </Box>
-      <Box
+        position="fixed"
+        top="0"
+        zIndex="2"
+        width="100%"
         display="flex"
         justifyContent="left"
         alignItems="center"
         backgroundColor={colors.primary[500]}
         height="60px"
-        boxShadow="0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)"
+        boxShadow="0px 20px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)"
+        sx={{ opacity: scroll ? undefined : "0.9" }}
       >
         <Box
           display="flex"
@@ -188,28 +152,41 @@ export default function Navbar() {
               onClick={toggleDrawer(false)}
               sx={{
                 width: 250,
-                "& > a": {
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textDecoration: "none",
-                  color: colors.grey[100],
-                  fontSize: "large",
-                  p: "20px 0",
-                  ":hover": {
-                    color: "black",
-                    backgroundColor: "rgb(141, 77, 205)",
+                "& .MuiTabs-flexContainer": {
+                  height: "100%",
+                },
+                "& .MuiButtonBase-root": {
+                  color: "white",
+                  fontSize: "16px",
+                  ":focus": {
+                    outline: "none",
                   },
+                  ":hover": {
+                    color: "#868dfb",
+                    textShadow:
+                      "0 0 10px #868dfb,0 0 20px #868dfb,0 0 40px #868dfb",
+                  },
+                },
+                "& .MuiTab-root.Mui-selected": {
+                  textShadow: "0 0 10px #868dfb,0 0 10px #868dfb",
+                  color: "#868dfb",
+                },
+                "& .MuiTabs-indicator": {
+                  bgcolor: "#868dfb",
                 },
               }}
             >
-              <Link to="/">Home</Link>
-              <Link to="/pets">Cats</Link>
-              <Link to="/about">About</Link>
-              <Link to="/contact">Contact</Link>
-              <Divider />
-              <Link to="/form">Adoption Form</Link>
+              <Tabs value={value} orientation="vertical">
+                <Tab label="Home" onClick={() => navigate("/")} />
+                <Tab label="Cats" onClick={() => navigate("/pets")} />
+                <Tab label="About" onClick={() => navigate("/about")} />
+                <Tab label="Contact" onClick={() => navigate("/contact")} />
+                <Tab
+                  label="Adoption Form"
+                  onClick={() => navigate("/form")}
+                  sx={{ borderTop: "1px solid grey" }}
+                />
+              </Tabs>
             </Box>
           </SwipeableDrawer>
         </Box>
@@ -226,12 +203,18 @@ export default function Navbar() {
               ":focus": {
                 outline: "none",
               },
+              ":hover": {
+                color: "#868dfb",
+                textShadow:
+                  "0 0 10px #868dfb,0 0 20px #868dfb,0 0 40px #868dfb",
+              },
             },
-            "& .css-eby46w-MuiButtonBase-root-MuiTab-root.Mui-selected": {
-              color: colors.blueAccent[500],
+            "& .MuiTab-root.Mui-selected": {
+              textShadow: "0 0 10px #868dfb,0 0 10px #868dfb",
+              color: "#868dfb",
             },
             "& .MuiTabs-indicator": {
-              bgcolor: colors.blueAccent[500],
+              bgcolor: "#868dfb",
             },
           }}
         >
