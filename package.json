@@ -11,6 +11,7 @@
     "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Deva",
+  "license": "",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.259.0",
     "@aws-sdk/s3-request-presigner": "^3.261.0",
