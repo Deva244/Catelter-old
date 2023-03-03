@@ -18,11 +18,16 @@ import { tokens } from "../theme";
 import { toast } from "react-toastify";
 import { getCats } from "../features/cat/catSlice";
 import { reset, submitForm } from "../features/form/formSlice";
+import { useParams } from "react-router-dom";
 
 export default function AdoptionForm() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
+
+  const { choose } = useParams();
+
+  const chooseCat = choose.split("=");
 
   const isNonMobile = useMediaQuery("(min-width: 750px)");
 
@@ -62,8 +67,8 @@ export default function AdoptionForm() {
     petCharacter: "",
     living: "",
     children: false,
-    chooseCat: false,
-    cat: "",
+    chooseCat: chooseCat[0] === "yes" ? true : false,
+    cat: chooseCat[0] === "yes" ? chooseCat[1] : "",
   };
 
   const validationSchema = yup.object().shape({
@@ -117,10 +122,10 @@ export default function AdoptionForm() {
   return (
     <Box
       display="flex"
-      justifyContent="center"
       flexDirection="column"
       alignItems="center"
-      m="10vh 0"
+      height="100%"
+      mt="7rem"
     >
       <Typography variant="h2" sx={{ mb: 1 }}>
         Adoption Form

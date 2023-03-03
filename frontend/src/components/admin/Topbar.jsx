@@ -110,7 +110,7 @@ const Topbar = () => {
         >
           <MenuItem
             onClick={() => {
-              navigate(`/admin/account`);
+              navigate(`/cadmin/account`);
               handleClose();
             }}
           >

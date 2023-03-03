@@ -51,7 +51,7 @@ const Sidebar = ({ unread, unviewed, display }) => {
 
   const { pathname } = useLocation();
 
-  const currentPath = pathname.slice(7);
+  const currentPath = pathname.slice(8);
   const pathTitle =
     currentPath.length === 0
       ? "Dashboard"

@@ -37,7 +37,11 @@ export default function CatProfile() {
   }
 
   return (
-    <Box m={Desktop ? "3rem 5rem" : "20px"} bgcolor={colors.primary[400]}>
+    <Box
+      m={Desktop ? "10vh 5rem" : "9vh 1rem"}
+      height="100%"
+      bgcolor={colors.primary[400]}
+    >
       <Box
         display="flex"
         justifyContent="space-between"
@@ -114,16 +118,10 @@ export default function CatProfile() {
             mt="10px"
           >
             <Typography variant="h5" sx={{ mb: "10px" }}>
-              <b>Health:</b> Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Id harum deserunt laboriosam hic ducimus, dicta non sequi
-              voluptate quasi suscipit assumenda. Assumenda ab molestiae
-              officia? Accusantium ad quibusdam ab architecto.
+              <b>Health:</b> {cat[0].health}
             </Typography>
             <Typography variant="h5" sx={{ mb: "10px" }}>
-              <b>About:</b> Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Cum omnis esse necessitatibus, non delectus hic facere
-              doloremque, explicabo vel dolores iure corporis nobis cumque dicta
-              vitae. Itaque, exercitationem? Odio, veritatis.
+              <b>About:</b> {cat[0].about}
             </Typography>
           </Box>
         </Box>
@@ -152,9 +150,9 @@ export default function CatProfile() {
           >
             {cat[0].state}
           </Typography>
-          {cat[0].state === "Free to adopt" && (
+          {cat[0].state === "Available" && (
             <Button
-              onClick={() => navigate("/form")}
+              onClick={() => navigate(`/form/choose/yes=${cat[0].name}`)}
               sx={{
                 bgcolor: colors.blueAccent[500],
                 fontSize: "13px",

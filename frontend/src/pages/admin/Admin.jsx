@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ColorModeContext, useMode } from "../../theme";
@@ -40,7 +40,7 @@ export default function Admin() {
   useEffect(() => {
     if (isError) {
       toast.error(message);
-      navigate("/login");
+      redirect("/login");
     }
 
     if (!user) {

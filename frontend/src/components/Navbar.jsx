@@ -11,13 +11,14 @@ import {
   Tabs,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, redirect } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { ColorModeContext, tokens } from "../theme";
 import { getUserData } from "../features/auth/authSlice";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 export default function Navbar() {
   const theme = useTheme();
@@ -37,6 +38,10 @@ export default function Navbar() {
       setScroll(false);
     }
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [pathname]);
 
   const paths = ["/", "/pets", "/about", "/contact"];
 
@@ -78,6 +83,25 @@ export default function Navbar() {
 
   return (
     <Box>
+      <Box
+        bgcolor={colors.blueAccent[600]}
+        position="fixed"
+        borderRadius="50%"
+        zIndex="2"
+        p="5px"
+        boxShadow="0px 20px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)"
+        onClick={() => window.scroll(0, 0)}
+        sx={{
+          bottom: 50,
+          right: 50,
+          display: scroll && Desktop ? "flex" : "none",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+        }}
+      >
+        <KeyboardArrowUpIcon sx={{ fontSize: "34px" }} />
+      </Box>
       <Box
         position="fixed"
         top="0"
@@ -248,7 +272,7 @@ export default function Navbar() {
             )}
           </IconButton>
           <Button
-            onClick={() => navigate("/form")}
+            onClick={() => navigate(`/form/choose/no`)}
             sx={{
               bgcolor: colors.blueAccent[500],
               fontSize: "13px",

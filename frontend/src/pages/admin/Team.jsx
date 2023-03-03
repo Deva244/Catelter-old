@@ -66,12 +66,12 @@ export default function Team() {
 
   const [selectedRow, setSelectedRow] = useState("");
 
-  const [userName, setUserName] = useState("");
+  const [nickname, setNickname] = useState("");
 
   useEffect(() => {
     if (selectedRow.length != 0) {
       const selectedUser = usersData.filter((cat) => cat._id === selectedRow);
-      setUserName(selectedUser[0].username);
+      setNickname(selectedUser[0].nickname);
     }
   }, [selectedRow]);
 
@@ -213,7 +213,7 @@ export default function Team() {
           <Typography
             variant="h4"
             sx={{ textAlign: "center" }}
-          >{`Delete "${userName}"?`}</Typography>
+          >{`Delete "${nickname}"?`}</Typography>
           <Box
             display="flex"
             alignItems="center"

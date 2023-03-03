@@ -57,7 +57,7 @@ export default function MessageForm() {
   }
 
   return (
-    <Box m="3rem">
+    <Box>
       <Typography variant="h2" sx={{ mb: 1 }}>
         Contact Us
       </Typography>

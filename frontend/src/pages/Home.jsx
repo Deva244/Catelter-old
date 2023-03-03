@@ -23,7 +23,7 @@ export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const Desktop = useMediaQuery("(min-width:1024px)");
+  const Desktop = useMediaQuery("(min-width:1000px)");
   const smallDesktop = useMediaQuery("(max-width: 1600px)");
   const smallerDesktop = useMediaQuery("(max-width: 1280px)");
 
@@ -125,7 +125,7 @@ export default function Home() {
                 },
               }}
             >
-              <Link to="/form">Adopt</Link> a cat today
+              <Link to="/form/choose/no">Adopt</Link> a cat today
             </Typography>
           </Box>
           <Box
@@ -195,7 +195,7 @@ export default function Home() {
         justifyContent="space-around"
         alignItems="center"
         bgcolor={colors.primary[400]}
-        p={Desktop ? "0 15rem" : "0 4rem"}
+        p={Desktop ? "4vh 1rem" : "4vh 4rem"}
       >
         <MessageForm />
         <Box display={Desktop ? "block" : "none"}>
@@ -203,7 +203,16 @@ export default function Home() {
         </Box>
       </Box>
       {/* Lost & Found */}
-      <Box display="flex" justifyContent="space-around" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="space-around"
+        alignItems="center"
+        sx={{
+          "& > div.MuiBox-root": {
+            m: Desktop ? "5vh 15vw" : "5vh 6vw",
+          },
+        }}
+      >
         <Pets
           title="Lost & Found"
           subtitle="Help reunite these pets with their owners"

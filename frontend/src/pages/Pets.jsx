@@ -15,6 +15,7 @@ export default function Pets({ title, subtitle, page }) {
   const navigate = useNavigate();
 
   const Desktop = useMediaQuery("(min-width:700px)");
+  const bigDesktop = useMediaQuery("(min-width:2000px)");
 
   const { cats, isError, isLoading, message } = useSelector(
     (state) => state.cat
@@ -75,6 +76,7 @@ export default function Pets({ title, subtitle, page }) {
       display="flex"
       flexDirection="column"
       alignItems="center"
+      height={bigDesktop ? "100%" : undefined}
       m={Desktop ? "10vh 15vw" : "10vh 6vw"}
     >
       <Typography variant="h1" sx={{ mb: "5px", textAlign: "center" }}>

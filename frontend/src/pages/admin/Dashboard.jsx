@@ -38,8 +38,12 @@ export default function Dashboard() {
 
   const catsArray = cats;
 
-  const availableCats = catsArray.filter(
-    (cat) => cat.state === "Free to adopt"
+  const availableCats = catsArray.filter((cat) => cat.state === "Available");
+  const unavailableCats = catsArray.filter(
+    (cat) => cat.state === "Unavailable"
+  );
+  const lostFoundCats = catsArray.filter(
+    (cat) => cat.state === "Lost" || cat.state === "Found"
   );
 
   useEffect(() => {
@@ -117,12 +121,14 @@ export default function Dashboard() {
         <StatBox
           title="Cats"
           icon={<PetsIcon />}
-          dataTitle1="Available to adopt"
+          dataTitle1="Available"
           dataTitle2="Unavailable"
-          dataTitle3="Total cats"
+          dataTitle3="Lost & Found"
+          dataTitle4="Total cats"
           info1={availableCats.length}
-          info2={cats.length - availableCats.length}
-          info3={cats.length}
+          info2={unavailableCats.length}
+          info3={lostFoundCats.length}
+          info4={cats.length}
           destination="pets"
         />
         <StatBox

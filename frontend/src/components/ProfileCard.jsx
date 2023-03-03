@@ -91,13 +91,9 @@ export default function ProfileCard({
         <Typography sx={{ mt: "10px" }}>{about}</Typography>
       </CardContent>
       <CardActions>
-        {(state === "Available" || state === "Lost") && (
+        {state === "Available" && (
           <Button
-            onClick={() =>
-              state === "Available"
-                ? navigate("/form")
-                : document.getElementById("contact").scrollIntoView()
-            }
+            onClick={() => navigate(`/form/choose/yes=${name}`)}
             sx={{
               bgcolor: colors.blueAccent[500],
               fontSize: "13px",
@@ -110,7 +106,25 @@ export default function ProfileCard({
               },
             }}
           >
-            {state === "Available" ? "Adopt" : "Contact"}
+            Adopt
+          </Button>
+        )}
+        {state === "Lost" && (
+          <Button
+            onClick={() => document.getElementById("contact").scrollIntoView()}
+            sx={{
+              bgcolor: colors.blueAccent[500],
+              fontSize: "13px",
+              fontWeight: "bold",
+              ":hover": {
+                bgcolor: colors.blueAccent[400],
+              },
+              ":focus": {
+                outline: "none",
+              },
+            }}
+          >
+            Contact
           </Button>
         )}
       </CardActions>

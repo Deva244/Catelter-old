@@ -5,8 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { getUserData, login, reset } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { Box, useMediaQuery } from "@mui/material";
 
 export default function AdminLogin() {
+  const Desktop = useMediaQuery("(min-width: 1000px)");
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -54,8 +57,8 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-container">
+    <Box className="login-page" mt={Desktop ? undefined : "3.7rem"}>
+      <Box className="login-container">
         <h2>
           <FaUser /> LOGIN
         </h2>
@@ -80,7 +83,7 @@ export default function AdminLogin() {
             <FaSignInAlt /> Login
           </button>
         </form>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
