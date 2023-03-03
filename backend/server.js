@@ -11,15 +11,6 @@ const app = express();
 
 connectDB();
 
-if (process.env.NODE_ENV === "production") {
-  //*Set static folder up in production
-  app.use(express.static("../frontend/build"));
-
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"))
-  );
-}
-
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -30,5 +21,14 @@ app.use("/api/img", require("./routes/uploadRoutes"));
 app.use("/api/contact", require("./routes/contactRoutes"));
 
 app.use(errorHandler);
+
+if (process.env.NODE_ENV === "production") {
+  //*Set static folder up in production
+  app.use(express.static("../frontend/build"));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"))
+  );
+}
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
